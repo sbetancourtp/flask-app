@@ -2,3 +2,4 @@ venv_curso_flask
 
 *.pyc
 __pycache__
+.env
