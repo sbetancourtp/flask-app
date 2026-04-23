@@ -32,13 +32,11 @@ def cadastro():
     return render_template('cadastro.html', form=form)
 
 @app.route('/sair/')
-@login_required
 def logout():
     logout_user()
     return redirect(url_for('homepage'))
 
 @app.route('/post/novo/', methods=['GET', 'POST'])
-@login_required
 def postNovo():
     form = PostForm()
     if form.validate_on_submit():
@@ -48,13 +46,11 @@ def postNovo():
     return render_template('post_novo.html', form=form)
 
 @app.route('/post/lista/', methods=['GET', 'POST'])
-@login_required
 def postLista():
     posts = Post.query.all()
     return render_template('post_lista.html', posts=posts)
 
 @app.route('/post/<int:id>/', methods=['GET', 'POST'])
-@login_required
 def post(id):
     post = Post.query.get(id)
     form = PostComentarioForm()
@@ -65,7 +61,6 @@ def post(id):
 
 
 @app.route('/contato/', methods=['GET', 'POST'])
-@login_required
 def contato():
     form = ContatoForm()
     context = {}
@@ -77,7 +72,6 @@ def contato():
     return render_template('contato.html', context=context, form=form)
 
 @app.route('/contato/lista/')
-@login_required
 def contatoLista():
     if current_user.id == 1: return redirect(url_for('homepage'))
     context = dict()
@@ -95,7 +89,6 @@ def contatoLista():
 
 # Formato nao recomendado
 @app.route('/contato_old/', methods=['GET', 'POST'])
-@login_required
 def contato_old():
     context = {}
     if request.method == 'GET':
@@ -125,7 +118,6 @@ def contato_old():
 
 
 @app.route('/contato/<int:id>/')
-@login_required
 def contatoDetail(id):
     obj = Contato.query.get(id)
 
