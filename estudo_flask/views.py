@@ -9,17 +9,12 @@ def homepage():
 
     form = LoginForm()
     if form.validate_on_submit():
-        user = form.login()
-        login_user(user, remember=True)
-
-    context = {
-        'usuario': 'randomuser777pamonha',
-        'idade': 29
-    }
+        verified_user = form.user_verificator()
+        login_user(verified_user, remember=True)
 
     print(current_user.is_authenticated)
 
-    return render_template('index.html', context=context, form=form)
+    return render_template('index.html', form=form)
 
 @app.route('/cadastro/', methods=['GET', 'POST'])
 def cadastro():

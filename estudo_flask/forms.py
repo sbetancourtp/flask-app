@@ -38,7 +38,7 @@ class LoginForm(FlaskForm):
     senha = PasswordField('Senha', validators=[DataRequired()])
     btnSubmit = SubmitField('Login')
 
-    def login(self):
+    def user_verificator(self):
         # Recuperar o usuario do email
         user = User.query.filter_by(email=self.email.data).first()
 
